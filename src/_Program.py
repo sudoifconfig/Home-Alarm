@@ -54,8 +54,14 @@ class ProgramClass:
             self.return_pin_state()
 
             if self.pin_state:
-                self.lcd.print_on_LCD("alarm ON","")
+                
+                try:
+                    self.lcd.print_on_LCD("alarm ON","")
+                except:
+                    print('Error LCD 1  Szymon Borszcz')
+
                 if self.move_sensor.check_status():
+
                     self.lcd.print_on_LCD("SENSOR ACTIV","PHOTO TAKEN")
                     self.camera.make_photo_and_save()
                     try:
@@ -92,6 +98,9 @@ class ProgramClass:
 
 
     def run_program(self):
+
+        print("START PROGRAM")
+        
         program_status = True
         while program_status:
             time.sleep(0.1)
